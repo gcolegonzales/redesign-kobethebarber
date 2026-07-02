@@ -145,14 +145,6 @@ h1,h2,h3,.brand-mark{ font-family:'Anton',Impact,sans-serif; font-weight:400; le
 .hero-tag{ position:absolute; left:14px; bottom:14px; z-index:2; background:var(--gold); color:#141210; font-weight:800; font-size:.78rem; letter-spacing:.03em; padding:.4rem .8rem; border-radius:999px; }
 .hero-media::before{ content:"★ 4.9"; position:absolute; top:-14px; right:-6px; z-index:3; background:var(--ink); color:#121212; font-family:'Anton',sans-serif; font-size:1.15rem; letter-spacing:.03em; padding:.55rem .9rem; border-radius:12px; box-shadow:var(--shadow); transform:rotate(-4deg); }
 
-/* marquee */
-.marquee{ position:relative; z-index:1; border-block:1px solid var(--line); background:var(--bg-2); overflow:hidden; }
-.marquee-track{ display:flex; align-items:center; gap:1.4rem; white-space:nowrap; padding-block:.85rem; width:max-content; animation:scroll 26s linear infinite; }
-.marquee-track span{ font-family:'Anton',sans-serif; font-size:1.15rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink); }
-.marquee-track span:nth-child(even){ color:var(--gold); font-size:.9rem; }
-@keyframes scroll{ to{ transform:translateX(-50%); } }
-@media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none; } }
-
 /* ============================================================
    SECTIONS (shared)
    ============================================================ */
