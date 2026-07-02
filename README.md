@@ -24,7 +24,7 @@ All content is pulled from the **public Booksy listing**:
 
 - Owner name: **Kolby Williams**
 - Address: 1033 N Airline Hwy, Suite C, Gonzales, LA 70737
-- Rating: 4.9 stars, 52 reviews
+- Rating: top-rated on Booksy (see the live listing for the current rating)
 - Full service menu + prices (Supreme Cut $55, Men's Haircut $40, etc.)
 - Real customer review quotes
 - Real cut photos from the Booksy gallery (in `assets/photos/`)
