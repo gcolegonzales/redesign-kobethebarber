@@ -36,6 +36,21 @@ All content is pulled from the **public Booksy listing**:
 
 If Kolby wants more/newer photos on the site, drop them in `assets/photos/` (see `assets/photos/DROP-PHOTOS-HERE.md`).
 
+## SEO
+
+On-page SEO is baked in: unique `<title>` + meta description, JSON-LD structured data
+(`@type: BarberShop` with real name, address, price range, rating, and Booksy `sameAs`),
+canonical link, complete Open Graph + Twitter Card tags, plus `robots.txt` and `sitemap.xml`
+at the repo root.
+
+**Base URL placeholder:** the canonical, `og:url`, JSON-LD `url`/`image`, `robots.txt`,
+and `sitemap.xml` all use the literal placeholder `https://REPLACE-WITH-DOMAIN.com/`.
+When the real domain is known, do a single find-and-replace of that string across all files
+before deploying.
+
+Phone number and business hours are intentionally left out of the schema — neither is published
+anywhere, so including them would mean inventing data.
+
 ## How to view
 
 Open `index.html` in any browser (double-click it) — no build step, no dependencies.
