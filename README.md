@@ -44,7 +44,7 @@ canonical link, complete Open Graph + Twitter Card tags, plus `robots.txt` and `
 at the repo root.
 
 **Base URL placeholder:** the canonical, `og:url`, JSON-LD `url`/`image`, `robots.txt`,
-and `sitemap.xml` all use the literal placeholder `https://REPLACE-WITH-DOMAIN.com/`.
+and `sitemap.xml` all use the literal placeholder `https://kobethebarber.com/`.
 When the real domain is known, do a single find-and-replace of that string across all files
 before deploying.
 
