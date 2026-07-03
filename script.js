@@ -5,6 +5,7 @@
   var header = document.querySelector('.site-header');
   var toggle = document.querySelector('.menu-toggle');
   var mobileNav = document.getElementById('mobile-nav');
+  var scrim = document.getElementById('nav-scrim');
 
   /* ---- Sticky header shrink ---- */
   var onScroll = function () {
@@ -16,13 +17,18 @@
 
   /* ---- Mobile nav ---- */
   if (toggle && mobileNav) {
-    var closeNav = function () {
-      mobileNav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    };
-    toggle.addEventListener('click', function () {
-      var open = mobileNav.classList.toggle('open');
+    var setNav = function (open) {
+      mobileNav.classList.toggle('open', open);
+      if (scrim) scrim.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    var closeNav = function () { setNav(false); };
+    toggle.addEventListener('click', function () {
+      setNav(!mobileNav.classList.contains('open'));
+    });
+    if (scrim) scrim.addEventListener('click', closeNav);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
     });
     mobileNav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', closeNav);
