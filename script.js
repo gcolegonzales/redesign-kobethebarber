@@ -31,7 +31,36 @@
       if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
     });
     mobileNav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', closeNav);
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        // In-page anchors: close the drawer FIRST, then scroll to the target
+        // after layout settles. Scrolling while the drawer is still collapsing
+        // shifts the page height and overshoots the target by ~350px.
+        if (href.charAt(0) === '#' && href.length > 1) {
+          var target = document.getElementById(href.slice(1));
+          if (target) {
+            e.preventDefault();
+            var scrollToTarget = function () {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (history.replaceState) history.replaceState(null, '', href);
+            };
+            var done = false;
+            var go = function () {
+              if (done) return; done = true;
+              mobileNav.removeEventListener('transitionend', onEnd);
+              scrollToTarget();
+            };
+            var onEnd = function (ev) {
+              if (ev.target === mobileNav && ev.propertyName === 'max-height') go();
+            };
+            mobileNav.addEventListener('transitionend', onEnd);
+            closeNav(); // triggers the collapse transition
+            setTimeout(go, 460); // fallback if transitionend doesn't fire
+            return;
+          }
+        }
+        closeNav();
+      });
     });
   }
 
@@ -87,7 +116,13 @@
     });
   }
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lightbox && !lightbox.hidden) closeLightbox();
+    if (!lightbox || lightbox.hidden) return;
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    // Focus trap: the only focusable control is the close button — keep Tab on it.
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      if (lbClose) lbClose.focus();
+    }
   });
 
   /* ---- Footer year ---- */
